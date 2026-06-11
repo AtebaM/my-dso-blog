@@ -1,33 +1,31 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import {config as dotenvconfig}  from "dotenv";
 
-dotenvconfig();
-
-/* TODO: change to read configuration from environment */
-const blogEnabled = Boolean(process.env.BLOG_ENABLED === 'true')
+// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'DSO Live Demo Docs',
+  title: 'My Site',
   tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.ico',
 
+  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
+  future: {
+    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+  },
+
   // Set the production url of your site here
-  url: process.env.DEPLOYMENT_URL ?? "https://spmse.github.io",
+  url: 'https://your-docusaurus-site.example.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: process.env.BASE_URL ?? "/",
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: process.env.GITHUB_ORG, // Usually your GitHub org/user name.
-  projectName: process.env.GITHUB_PROJECT, // Usually your repo name.
-
-  deploymentBranch: process.env.DEPLOYMENT_BRANCH,
+  organizationName: 'facebook', // Usually your GitHub org/user name.
+  projectName: 'docusaurus', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -46,25 +44,23 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/spmse/dev-blog-template',
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
-        blog: blogEnabled ? 
-          {
-            showReadingTime: true,
-            feedOptions: {
-              type: ['rss', 'atom'],
-              xslt: true,
-            },
-            // Please change this to your repo.
-            // Remove this to remove the "edit this page" links.
-            editUrl:
-              'https://github.com/spmse/dev-blog-template',
-            // Useful options to enforce blogging best practices
-            onInlineTags: 'warn',
-            onInlineAuthors: 'warn',
-            onUntruncatedBlogPosts: 'warn',
-          }
-          : false,
+        blog: {
+          showReadingTime: true,
+          feedOptions: {
+            type: ['rss', 'atom'],
+            xslt: true,
+          },
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl:
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // Useful options to enforce blogging best practices
+          onInlineTags: 'warn',
+          onInlineAuthors: 'warn',
+          onUntruncatedBlogPosts: 'warn',
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -75,6 +71,9 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
+    colorMode: {
+      respectPrefersColorScheme: true,
+    },
     navbar: {
       title: 'My Site',
       logo: {
@@ -86,11 +85,12 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Docs',
+          label: 'Tutorial',
         },
+        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/spmse/dev-blog-template',
-          label: 'Github',
+          href: 'https://github.com/facebook/docusaurus',
+          label: 'GitHub',
           position: 'right',
         },
       ],
@@ -103,7 +103,7 @@ const config: Config = {
           items: [
             {
               label: 'Tutorial',
-              to: '/docs/guides/intro',
+              to: '/docs/intro',
             },
           ],
         },
@@ -119,8 +119,8 @@ const config: Config = {
               href: 'https://discordapp.com/invite/docusaurus',
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              label: 'X',
+              href: 'https://x.com/docusaurus',
             },
           ],
         },
@@ -128,38 +128,23 @@ const config: Config = {
           title: 'More',
           items: [
             {
+              label: 'Blog',
+              to: '/blog',
+            },
+            {
               label: 'GitHub',
               href: 'https://github.com/facebook/docusaurus',
-            }
+            },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Sven Patrick Meier (spmse). Built with Docusaurus and 💚.`,
+      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
-      additionalLanguages: ['powershell', 'hcl'],
-      magicComments: [
-        // Remember to extend the default highlight class name as well!
-        {
-          className: 'theme-code-block-highlighted-line',
-          line: 'highlight-next-line',
-          block: {start: 'highlight-start', end: 'highlight-end'},
-        },
-        {
-          className: 'code-block-error-line',
-          line: 'This will error',
-        },
-      ],
     },
   } satisfies Preset.ThemeConfig,
 };
-
-
-if (blogEnabled) {
-  (config.themeConfig.navbar as any).items.push({to: '/blog', label: 'Blog', position: 'left'});
-  (config.themeConfig.footer as any).links[2].items.push({to: '/blog', label: 'Blog'});
-}
 
 export default config;
