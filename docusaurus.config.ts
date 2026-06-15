@@ -130,7 +130,6 @@ const config: Config = {
 
 if (blogEnabled) {
   (config.themeConfig.navbar as any).items.push({to: '/blog', label: 'Blog', position: 'left'});
-  // CORRIGÉ : links[1] au lieu de links[2] car la colonne Community n'existe plus
   (config.themeConfig.footer as any).links[1].items.push({to: '/blog', label: 'Blog'});
 }
 
