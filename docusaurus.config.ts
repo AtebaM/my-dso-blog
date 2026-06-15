@@ -88,7 +88,7 @@ const config: Config = {
           items: [
             {
               label: 'Projects',
-              to: '/docs/projects',
+              to: '/docs/projects/docusaurus-blog',
             },
           ],
         },
