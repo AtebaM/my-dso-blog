@@ -64,7 +64,7 @@ const config: Config = {
       title: 'Portfolio',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: 'img/profil.jpg',
       },
       items: [
         {
@@ -74,7 +74,7 @@ const config: Config = {
           label: 'Docs',
         },
         {
-          href: gitRepositoryUrl, // CORRIGÉ : Utilise ta variable
+          href: gitRepositoryUrl, 
           label: 'Github',
           position: 'right',
         },
@@ -106,7 +106,7 @@ const config: Config = {
           ],
         },
       ],
-      // CORRIGÉ : Le message strict demandé par l'exercice
+     
       copyright: `Copyright © ${new Date().getFullYear()} Benoit Mbole Ateba - extended from the developer-akademie-starter.`,
     },
     prism: {
