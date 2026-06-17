@@ -1,34 +1,44 @@
-# V-Server Setup
+# V-Server Setup Documentation
 
-<!--INSERT YOUR BRIEF DESCRIPTION HERE -->
-This page documents how I configured my very first cloud server instance in the Developer Akademie DevSecOps Course.
+**Server IP Address:** `178.105.238.239`
+**Loom Video Link:** `[Insert link to your 5-min Loom video here]`
 
-## TOC
+## Table of Contents
+1. [SSH Configuration & Security](#1-ssh-configuration--security)
+2. [Web Server (NGINX) Setup](#2-web-server-nginx-setup)
+3. [Git & GitHub Configuration](#3-git--github-configuration)
+4. [Testing & Validation](#4-testing--validation)
 
-<!--INSERT YOUR TABLE OF CONTENTS HERE -->
+---
 
-import GithubLinkAdmonition from '@site/src/components/GithubLinkAdmonition';
+## 1. SSH Configuration & Security
 
-<GithubLinkAdmonition 
-    link="https://github.com/spmse/dev-blog-template"
-    title="Github Tip" 
-    type="tip"
-/>
+To ensure secure access to the V-Server, SSH key-based authentication was configured, and password authentication was disabled.
 
-## Quickstart
+* **Key Generation:** An SSH key pair was generated on the local machine using `ssh-keygen -t ed25519` command.
+* **Key Transfer:** The public key was transferred to the server using the `ssh-copy-id` command to populate the `~/.ssh/authorized_keys` file.
+* **Disabling Password Login:** After successfully verifying the SSH key login, the `/etc/ssh/sshd_config` file was edited. The `PasswordAuthentication` directive was set to `no`. The SSH daemon was then restarted.
 
-1. Create a SSH key pair on your local machine
-2. Login via `ssh` using your username and designated password
-3. Add your public SSH-Keys to the V-Servers `authorized_keys` with the following command:
-   1. `ssh-copy-id -i $HOME/.ssh/your-public-key.pub <user>@123.4.5.255`
-4. Logout from Server, try logging in with the KEY information only -> `ssh -i <path/to/key> user@host`
-   1. You should not be prompted for a password if it works correctly
-5. Log in to the V-Server again
-6. Disable Password-Login
-7. Disable Root-Login
+## 2. Web Server (NGINX) Setup
 
-## Description
+NGINX was chosen as the web server for this project.
 
+* **Installation:** Installed NGINX using the standard package manager (`apt`).
+* **Configuration:** Created a custom `index.html` file located at `/var/www/html/index.html` to serve as the new entry point, replacing the default NGINX welcome page.
+* **Validation:** Ran `nginx -t` to ensure the configuration was valid before restarting the NGINX service with `systemctl restart nginx`.
 
+## 3. Git & GitHub Configuration
 
-## Further References
+To allow the server to interact with GitHub repositories securely:
+
+* **User Config:** Set the global Git configuration for `user.name` and `user.email` to match my GitHub profile.
+* **Server SSH Key:** Generated a new SSH key pair directly on the V-Server. 
+* **GitHub Integration:** Added the generated public key to my GitHub account's SSH settings, enabling secure `git pull` and push operations from the server without exposing personal credentials.
+
+## 4. Testing & Validation
+
+The following tests were conducted to ensure the setup meets all requirements:
+* [x] Successfully logged into the server using the local SSH private key.
+* [x] Confirmed that login using a username and password is no longer possible (Tested using `ssh -o PubKeyAuthentication=no user@ip`).
+* [x] Verified the web server is accessible via the browser using the server's IP address, displaying the custom HTML page.
+* [x] Verified no sensitive data (passwords, private keys) are included in this repository.
