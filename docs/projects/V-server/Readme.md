@@ -16,7 +16,7 @@
 To ensure secure access to the V-Server, SSH key-based authentication was configured, and password authentication was disabled.
 
 * **Key Generation:** An SSH key pair was generated on the local machine using `ssh-keygen -t ed25519` command.
-* **Key Transfer:** The public key was transferred to the server using the `ssh-copy-id` command to populate the `~/.ssh/authorized_keys` file.
+* **Key Transfer:** The public key was transferred to the server using the `ssh-copy-id -i` command to populate the `~/.ssh/authorized_keys` file.
 * **Disabling Password Login:** After successfully verifying the SSH key login, the `/etc/ssh/sshd_config` file was edited. The `PasswordAuthentication` directive was set to `no`. The SSH daemon was then restarted.
 
 ## 2. Web Server (NGINX) Setup
@@ -24,7 +24,7 @@ To ensure secure access to the V-Server, SSH key-based authentication was config
 NGINX was chosen as the web server for this project.
 
 * **Installation:** Installed NGINX using the standard package manager (`apt`).
-* **Configuration:** Created a custom `index.html` file located at `/var/www/html/index.html` to serve as the new entry point, replacing the default NGINX welcome page.
+* **Configuration:** Created a custom `alternate-index.html` file located at `/var/www/alternatives` to serve as the new entry point, replacing the default NGINX welcome page.
 * **Validation:** Ran `nginx -t` to ensure the configuration was valid before restarting the NGINX service with `systemctl restart nginx`.
 
 ## 3. Git & GitHub Configuration
@@ -37,6 +37,7 @@ To allow the server to interact with GitHub repositories securely:
 
 ## 4. Testing & Validation
 
+ 
 The following tests were conducted to ensure the setup meets all requirements:
 * [x] Successfully logged into the server using the local SSH private key.
 * [x] Confirmed that login using a username and password is no longer possible (Tested using `ssh -o PubKeyAuthentication=no user@ip`).
