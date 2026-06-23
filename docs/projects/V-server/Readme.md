@@ -1,8 +1,5 @@
 # V-Server Setup Documentation
 
-**Server IP Address:** `178.105.238.239`
-
-
 ## Table of Contents
 1. [SSH Configuration & Security](#1-ssh-configuration--security)
 2. [Web Server (NGINX) Setup](#2-web-server-nginx-setup)
