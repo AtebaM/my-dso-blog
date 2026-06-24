@@ -1,5 +1,7 @@
 # V-Server Setup Documentation
 
+Configuration and Setup of a V-Server
+
 **Server IP Address:** `178.105.238.239`
 **Loom Video Link:** `[Insert link to your 5-min Loom video here]`
 
@@ -15,8 +17,17 @@
 
 To ensure secure access to the V-Server, SSH key-based authentication was configured, and password authentication was disabled.
 
-* **Key Generation:** An SSH key pair was generated on the local machine using `ssh-keygen -t ed25519` command.
-* **Key Transfer:** The public key was transferred to the server using the `ssh-copy-id -i` command to populate the `~/.ssh/authorized_keys` file.
+* **Key Generation:** An SSH key pair was generated on the local machine using
+
+```
+ `ssh-keygen -t ed25519` command.`
+```
+* **Key Transfer:** The public key was transferred to the server using the
+```
+ `ssh-copy-id -i`
+ ```
+  command to populate the `~/.ssh/authorized_keys` file.
+  
 * **Disabling Password Login:** After successfully verifying the SSH key login, the `/etc/ssh/sshd_config` file was edited. The `PasswordAuthentication` directive was set to `no`. The SSH daemon was then restarted.
 
 ## 2. Web Server (NGINX) Setup
@@ -28,7 +39,7 @@ NGINX was chosen as the web server for this project.
 * **Validation:** Ran `nginx -t` to ensure the configuration was valid before restarting the NGINX service with `systemctl restart nginx`.
 
 ## 3. Git & GitHub Configuration
-
+* [x] Confirmed that login using a username and password is no longer possible (Tested using `ssh -o PubKeyAuthentication=no <user>@<ip>`).
 To allow the server to interact with GitHub repositories securely:
 
 * **User Config:** Set the global Git configuration for `user.name` and `user.email` to match my GitHub profile.
