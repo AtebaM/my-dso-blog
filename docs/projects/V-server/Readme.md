@@ -1,10 +1,13 @@
 # V-Server Setup Documentation
 
-Configuration and Setup of a V-Server
+<<<<<<< HEAD
+** Configuration and Setup of a V-Server **
 
 **Server IP Address:** `178.105.238.239`
 **Loom Video Link:** `[Insert link to your 5-min Loom video here]`
 
+=======
+>>>>>>> 7671407409e236e94093e3bb2f2ce2774eef147a
 ## Table of Contents
 1. [SSH Configuration & Security](#1-ssh-configuration--security)
 2. [Web Server (NGINX) Setup](#2-web-server-nginx-setup)
