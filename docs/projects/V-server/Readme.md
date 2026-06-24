@@ -41,6 +41,15 @@ NGINX was chosen as the web server for this project.
 To allow the server to interact with GitHub repositories securely:
 
 * **User Config:** Set the global Git configuration for `user.name` and `user.email` to match my GitHub profile.
+```
+git config --global user.name "name"
+git config --global user.email "email"
+```
+* **Git connection test** we use the command
+
+```
+`ssh -T git@github.com`
+```
 * **Server SSH Key:** Generated a new SSH key pair directly on the V-Server. 
 * **GitHub Integration:** Added the generated public key to my GitHub account's SSH settings, enabling secure `git pull` and push operations from the server without exposing personal credentials.
 
@@ -50,7 +59,7 @@ To allow the server to interact with GitHub repositories securely:
 The following tests were conducted to ensure the setup meets all requirements:
 * [x] Successfully logged into the server using the local SSH private key.
 * [x] Confirmed that login using a username and password is no longer possible.
-Tested using
+Tested using the command:
 ```
  `ssh -o PubKeyAuthentication=no user@ip`
  ```
