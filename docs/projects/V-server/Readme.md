@@ -1,6 +1,6 @@
 # V-Server Setup Documentation
 
-**Configuration and Setup of a V-Server**
+## **Configuration and Setup of a V-Server**
 
 
 ## Table of Contents
