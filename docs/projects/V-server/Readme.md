@@ -1,6 +1,6 @@
 # V-Server Setup Documentation
 
-## **Configuration and Setup of a V-Server**
+### **Configuration and Setup of a V-Server**
 
 
 ## Table of Contents
@@ -15,10 +15,10 @@
 
 To ensure secure access to the V-Server, SSH key-based authentication was configured, and password authentication was disabled.
 
-* **Key Generation:** An SSH key pair was generated on the local machine using
+* **Key Generation:** An SSH key pair was generated on the local machine using the command:
 
 ```
- `ssh-keygen -t ed25519` command.`
+ `ssh-keygen -t ed25519`
 ```
 * **Key Transfer:** The public key was transferred to the server using the
 ```
@@ -49,6 +49,10 @@ To allow the server to interact with GitHub repositories securely:
  
 The following tests were conducted to ensure the setup meets all requirements:
 * [x] Successfully logged into the server using the local SSH private key.
-* [x] Confirmed that login using a username and password is no longer possible (Tested using `ssh -o PubKeyAuthentication=no user@ip`).
+* [x] Confirmed that login using a username and password is no longer possible.
+Tested using
+```
+ `ssh -o PubKeyAuthentication=no user@ip`
+ ```
 * [x] Verified the web server is accessible via the browser using the server's IP address, displaying the custom HTML page.
 * [x] Verified no sensitive data (passwords, private keys) are included in this repository.
