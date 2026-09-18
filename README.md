@@ -78,22 +78,4 @@ New content can be added as follows:
 
 ## Deployment
 
-### Deploy to Github Pages
-
-To deploy using SSH:
-
-```
-$ USE_SSH=true pnpm deploy
-```
-
-To deploy without using SSH, run:
-
-```
-$ GIT_USER=<Your GitHub username> pnpm deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
-
-### Deploying using NGINX
-
-To deploy the site using NGINX and Docker, follow this [guide](./docs/guides/deploy-docusaurus-with-docker-and-nginx.md)
+The website is automatically deployed to GitHub Pages using a prepared GitHub Action workflow as soon as a new commit is pushed to the main branch.
